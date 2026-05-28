@@ -3,7 +3,7 @@
 # Transformer from Scratch
 
 ### A PyTorch implementation of *"Attention Is All You Need"*
-### Vaswani et al., 2017 — faithfully reproduced, component by component
+### Vaswani et al., 2017 — faithfully reproduced , component by component
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
