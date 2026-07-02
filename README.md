@@ -2,18 +2,12 @@
 
 # Transformer from Scratch
 
-### A PyTorch implementation of *"Attention Is All You Need"*
-### Vaswani et al., 2017 — faithfully reproduced , component by component
-
-[![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
+### A PyTorch implementation of the research paper *"Attention Is All You Need"*
 [![Paper](https://img.shields.io/badge/Paper-Attention%20Is%20All%20You%20Need-blueviolet?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/1706.03762)
 
 ---
 
-> *"You don't understand something until you build it yourself."*
-
-This repository is a **clean, from-scratch PyTorch implementation** of the Transformer architecture — the model behind GPT, BERT, T5, and virtually every modern language model. Built for **English → Italian translation** using the OPUS Books dataset, with support for Colab training, Beam Search decoding, and attention visualization.
+This repository is a **PyTorch implementation** of the Transformer architecture — the model behind GPT, BERT, T5, and virtually every modern language model. Built for **English → Italian translation** using the OPUS Books dataset, with support for Colab training, Beam Search decoding, and attention visualization.
 
 </div>
 
@@ -39,36 +33,36 @@ Input Tokens
          │
          ▼
 ┌──────────────────────────────────────────┐
-│            ENCODER  (N=6 blocks)          │
+│            ENCODER  (N=6 blocks)         │
 │  ┌────────────────────────────────────┐  │
 │  │  Multi-Head Self-Attention (h=8)   │  │
-│  │  + Add & Layer Norm               │  │
+│  │  + Add & Layer Norm                │  │
 │  ├────────────────────────────────────┤  │
 │  │  Feed-Forward (d_ff=2048)          │  │
-│  │  + Add & Layer Norm               │  │
+│  │  + Add & Layer Norm                │  │
 │  └────────────────────────────────────┘  │
-│              × 6 layers                   │
+│              × 6 layers                  │
 └──────────────────────┬───────────────────┘
                        │ encoder_output
          ┌─────────────┘
          ▼
 ┌──────────────────────────────────────────┐
-│            DECODER  (N=6 blocks)          │
+│            DECODER  (N=6 blocks)         │
 │  ┌────────────────────────────────────┐  │
 │  │  Masked Multi-Head Self-Attention  │  │  ← prevents future token leakage
-│  │  + Add & Layer Norm               │  │
+│  │  + Add & Layer Norm                │  │
 │  ├────────────────────────────────────┤  │
-│  │  Cross-Attention (Q←tgt, K/V←enc) │  │  ← attends to encoder memory
-│  │  + Add & Layer Norm               │  │
+│  │  Cross-Attention (Q←tgt, K/V←enc)  │  │  ← attends to encoder memory
+│  │  + Add & Layer Norm                │  │
 │  ├────────────────────────────────────┤  │
 │  │  Feed-Forward (d_ff=2048)          │  │
-│  │  + Add & Layer Norm               │  │
+│  │  + Add & Layer Norm                │  │
 │  └────────────────────────────────────┘  │
-│              × 6 layers                   │
+│              × 6 layers                  │
 └──────────────────────┬───────────────────┘
                        │
 ┌──────────────────────▼───────────────────┐
-│         Linear Projection + Softmax       │  ← (batch, seq_len, vocab_size)
+│         Linear Projection + Softmax      │  ← (batch, seq_len, vocab_size)
 └──────────────────────────────────────────┘
                        │
                   Output Token
@@ -188,19 +182,11 @@ cd Transformer
 pip install -r requirements.txt
 ```
 
-### 2. Train Locally
+### 2. Train on Google Colab (Recommended)
 
-```bash
-python train.py
-```
+Open [`Colab_Train.ipynb`](Colab_Train.ipynb) 
 
-Or open [`Local_Train.ipynb`](Local_Train.ipynb) in Jupyter.
-
-### 3. Train on Google Colab (Recommended)
-
-Open [`Colab_Train.ipynb`](Colab_Train.ipynb) — it handles dataset download, tokenizer building, and GPU training automatically.
-
-### 4. Run Inference
+### 3. Run Inference
 
 ```bash
 python translate.py
@@ -208,17 +194,17 @@ python translate.py
 
 Or use [`Inference.ipynb`](Inference.ipynb) for interactive translation.
 
-### 5. Beam Search Decoding
+### 4. Beam Search Decoding
 
 Open [`Beam_Search.ipynb`](Beam_Search.ipynb) to run beam search and compare output quality against greedy decoding.
 
-### 6. Visualize Attention
+### 5. Visualize Attention
 
 Open [`attention_visual.ipynb`](attention_visual.ipynb) to see what each attention head focuses on across encoder and decoder layers.
 
 ---
 
-## 🔢 Model Hyperparameters (Paper Defaults)
+## Model Hyperparameters (Paper Defaults)
 
 | Parameter | Value | Description |
 |---|---|---|
@@ -234,7 +220,7 @@ Open [`attention_visual.ipynb`](attention_visual.ipynb) to see what each attenti
 
 ---
 
-## 📊 Training
+##  Training
 
 The model trains on the [OPUS Books](https://huggingface.co/datasets/opus_books) English-Italian corpus via HuggingFace datasets. A WordLevel tokenizer is trained from scratch on the data.
 
@@ -246,7 +232,7 @@ Key training features:
 
 ---
 
-## 📖 Reference Paper
+##  Reference Paper
 
 > **Attention Is All You Need**
 > Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, Illia Polosukhin
@@ -272,17 +258,3 @@ Install all with:
 ```bash
 pip install -r requirements.txt
 ```
-
----
-
-## 🙋 Author
-
-**Rudra116** · [github.com/Rudra116](https://github.com/Rudra116)
-
----
-
-<div align="center">
-
-*Built to understand the architecture that changed everything in NLP.*
-
-</div>
